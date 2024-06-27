@@ -7,6 +7,11 @@
 
 - [Name](#name)
 - [About](#about)
+    - [Key Benefits](#key-benefits)
+  - [Features](#features)
+- [Challenge](#challenge)
+- [Solution](#solution)
+- [Why it Matters](#why-it-matters)
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Installation](#installation)
@@ -19,8 +24,22 @@
 
 
 # About
+-<!-- Include a blurb about your project, including a link to docs if applicable -->
 
-<!-- Include a blurb about your project, including a link to docs if applicable -->
+### Key Benefits
+-<!-- Include a blurb about your project, including a link to docs if applicable -->
+
+## Features
+-<!-- Include a blurb about your project, including a link to docs if applicable -->
+
+# Challenge
+-<!-- Include a blurb about your project, including a link to docs if applicable -->
+
+# Solution
+-<!-- Include a blurb about your project, including a link to docs if applicable -->
+
+# Why it Matters
+-<!-- Include a blurb about your project, including a link to docs if applicable -->
 
 # Getting Started
 
