@@ -49,6 +49,12 @@ contract HelperConfig is Script {
     uint256 constant POLYGON_MAINNET_CHAIN_ID = 137;
     uint256 constant POLYGON_MUMBAI_CHAIN_ID = 80_001;
 
+    uint256 constant OP_MAINNET_CHAIN_ID = 10;
+    uint256 constant OP_SEPOLIA_CHAIN_ID = 11_155_420;
+
+    uint256 constant BASE_MAINNET_CHAIN_ID = 8453;
+    uint256 constant BASE_SEPOLIA_CHAIN_ID = 84_532;
+
     uint256 constant MODE_MAINNET_CHAIN_ID = 34_443;
     uint256 constant MODE_SEPOLIA_CHAIN_ID = 919;
 
@@ -66,6 +72,10 @@ contract HelperConfig is Script {
         networkConfigs[ZKSYNC_SEPOLIA_CHAIN_ID] = getZkSyncSepoliaConfig();
         networkConfigs[POLYGON_MAINNET_CHAIN_ID] = getPolygonMainnetConfig();
         networkConfigs[POLYGON_MUMBAI_CHAIN_ID] = getPolygonMumbaiConfig();
+        networkConfigs[OP_MAINNET_CHAIN_ID] = getOpMainnetConfig();
+        networkConfigs[OP_SEPOLIA_CHAIN_ID] = getOpSepoliaConfig();
+        networkConfigs[BASE_MAINNET_CHAIN_ID] = getBaseMainnetConfig();
+        networkConfigs[BASE_SEPOLIA_CHAIN_ID] = getBaseSepoliaConfig();
         networkConfigs[MODE_MAINNET_CHAIN_ID] = getModeMainnetConfig();
         networkConfigs[MODE_SEPOLIA_CHAIN_ID] = getModeSepoliaConfig();
     }
@@ -106,6 +116,22 @@ contract HelperConfig is Script {
     }
 
     function getPolygonMumbaiConfig() public pure returns (NetworkConfig memory) {
+        return NetworkConfig({ initialOwner: address(1) });
+    }
+
+    function getOpMainnetConfig() public pure returns (NetworkConfig memory) {
+        return NetworkConfig({ initialOwner: address(1) });
+    }
+
+    function getOpSepoliaConfig() public pure returns (NetworkConfig memory) {
+        return NetworkConfig({ initialOwner: address(1) });
+    }
+
+    function getBaseMainnetConfig() public pure returns (NetworkConfig memory) {
+        return NetworkConfig({ initialOwner: address(1) });
+    }
+
+    function getBaseSepoliaConfig() public pure returns (NetworkConfig memory) {
         return NetworkConfig({ initialOwner: address(1) });
     }
 
