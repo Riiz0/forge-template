@@ -4,55 +4,51 @@ pragma solidity 0.8.24;
 /**
  * @title DeployTestExample
  * @author Shawn Rizo
- * @notice Purpose: Demonstrates how to use HelperConfig to deploy an ExampleContract with network-specific settings. It
- * showcases the practical application of configurations managed by HelperConfig in a deployment script.
- *
- * Constructor:
- *   - Initializes the helperConfig variable with the address of a deployed HelperConfig contract. This setup
- * allows DeployTestExample to access network configurations.
+ * @notice This contract demonstrates the deployment of ExampleContract using network-specific settings managed by
+ * HelperConfig. It illustrates the dynamic application of configurations in a deployment script for different network
+ * environments.
  *
  * run Function:
- *   - Retrieves the active network configuration using helperConfig.getActiveNetworkConfig().
- *   - Deploys ExampleContract using the initialOwner from the active network configuration. This demonstrates how
- *   - deployment scripts can utilize HelperConfig to adapt to different networks seamlessly.
- */
-
-/**
- * @notice [MORE NOTES]
- * HelperConfig Configuration: The config object is an instance of a configuration (likely retrieved from the
- * HelperConfig contract or a similar configuration management setup), which contains various settings including the
- * initialOwner address. This configuration is specific to the network or deployment scenario you are working with.
+ *   - Instantiates a new HelperConfig contract.
+ *   - Retrieves the active network configuration from the newly created HelperConfig instance.
+ *   - Deploys ExampleContract with the initialOwner specified in the active network configuration. This process
+ * exemplifies the utilization of HelperConfig to facilitate adaptable deployments across various networks.
+ *   - Returns instances of both ExampleContract and HelperConfig, showcasing the contract's ability to interact with
+ * and configure other contracts dynamically.
  *
- * ExampleContract Deployment: When you deploy ExampleContract using new ExampleContract(config.initialOwner);, you are
- * passing the initialOwner address from the config object to the constructor of ExampleContract. This means the
- * initialOwner used here is defined by your deployment configuration (HelperConfig), not hardcoded or directly
- * specified in the ExampleContract itself.
+ * @dev The deployment script leverages HelperConfig for fetching network-specific configurations, such as the
+ * initialOwner address, to deploy ExampleContract. This approach ensures flexibility and adaptability in deployment
+ * strategies, catering to different network requirements without altering the core contract code.
  *
- * Purpose: The purpose of this approach is to allow for flexible deployment configurations. By using a configuration
- * object (config from HelperConfig), you can easily change the initialOwner and other parameters without modifying the
- * ExampleContract code. This is particularly useful for deploying to different networks (e.g., testnet, mainnet) where
- * different parameters might be needed.
+ * HelperConfig Interaction:
+ *   - The script begins by creating a new instance of HelperConfig, which is responsible for managing network-specific
+ * configurations.
+ *   - It then fetches the active network configuration using `getActiveNetworkConfig()`, obtaining parameters like the
+ * initialOwner.
+ *
+ * ExampleContract Deployment:
+ *   - With the active network configuration at hand, the script deploys ExampleContract, passing `config.initialOwner`
+ * to its constructor. This method ensures that the initialOwner is determined by the current deployment environment,
+ * facilitated by HelperConfig, rather than being hardcoded.
+ *
+ * Purpose and Benefits:
+ *   - The primary aim is to demonstrate a flexible and dynamic deployment mechanism that can easily adapt to various
+ * network settings without necessitating changes to the deployed contracts' code.
+ *   - This method significantly enhances deployment efficiency and adaptability, particularly beneficial for projects
+ * targeting multiple networks (e.g., Ethereum mainnet, testnets) with varying configurations.
  */
 import { Script, console2 } from "forge-std/Script.sol";
 import { ExampleContract } from "../src/ExampleContract.sol";
 import { HelperConfig } from "./HelperConfig.s.sol";
 
 contract DeployTestExample is Script {
-    HelperConfig helperConfig;
+    function run() external returns (ExampleContract, HelperConfig) {
+        HelperConfig helperConfig = new HelperConfig();
 
-    constructor(address helperConfigAddress) {
-        helperConfig = HelperConfig(helperConfigAddress);
-    }
-
-    function run() external returns (ExampleContract) {
         HelperConfig.NetworkConfig memory config = helperConfig.getActiveNetworkConfig();
 
         ExampleContract exampleContract = new ExampleContract(config.initialOwner);
 
-        return exampleContract;
-    }
-
-    function getHelperConfig() public view returns (HelperConfig) {
-        return helperConfig;
+        return (exampleContract, helperConfig);
     }
 }

@@ -14,8 +14,8 @@ contract CounterTest is Test {
     function setUp() public {
         config = new HelperConfig();
 
-        deployer = new DeployTestExample(address(config));
-        exampleContract = deployer.run();
+        deployer = new DeployTestExample();
+        (exampleContract, config) = deployer.run();
 
         exampleContract.setNumber(0);
     }
