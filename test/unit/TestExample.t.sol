@@ -3,8 +3,8 @@ pragma solidity ^0.8.13;
 
 import { Test, console2 } from "forge-std/Test.sol";
 import { ExampleContract } from "src/ExampleContract.sol";
-import { HelperConfig } from "../script/HelperConfig.s.sol";
-import { DeployTestExample } from "../script/DeployTestExample.s.sol";
+import { HelperConfig } from "../../script/HelperConfig.s.sol";
+import { DeployTestExample } from "../../script/DeployTestExample.s.sol";
 
 contract CounterTest is Test {
     ExampleContract exampleContract;
