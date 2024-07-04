@@ -4,11 +4,24 @@ out = "out"
 libs = ["lib"]
 solc = "0.8.24"
 remappings = ['@openzeppelin/contracts=lib/openzeppelin-contracts/contracts']
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 # fs_permissions = [
 #     { access = "read", path = "./broadcast" },
 #     { access = "read", path = "./reports" },
 # ]
 
+# When working with private keys avoid .env file and use the following code in the terminal
+# cast wallet import NAME_OF_FILE --interactive
+# Then paste in the private key
+# create a password for the wallet you called "NAME_OF_FILE"
+#
+# To check what aacount you have type the following in the terminal `cast wallet list`
+#
+# So when running the deployment script on localhost or testnet it would look something like this,
+# forge script script/ContractScriptName.s.sol:ContractScriptName --rpc-url $(SEPOLIA_RPC_URL) --sender PUBLIC_ADDRESS_OF_ACCOUNT_YOU_IMPORTED --account NAME_OF_FILE --etherscan-api-key $(ETHERSCAN_API_KEY) --verify --broadcast
+
+# jq '.abi' out/ContractName.sol/ContractName.json > ContractNameABI.json
 
 [fuzz]
 runs = 1000
@@ -51,6 +64,6 @@ base = { key = "${API_KEY_BASESCAN}" }
 [rpc_endpoints]
 # example:
 # zksync = "https://mainnet.era.zksync.io"
-
+sepolia = ""
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
